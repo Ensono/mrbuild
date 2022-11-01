@@ -1,0 +1,31 @@
+== Reasons
+
+One of the issues with using Azure DevOps Pipelines and GitHub repos is that it is hard to get validation in a Pull Request when working in a mono repo.
+
+The reason for this is that the mechanism in GitHub for build validation allows for two build options:
+
+ * required
+ * optional
+
+[cols="2,1a",grid=none,frame=none]
+|===
+|
+For validation to be effective all of the builds should be required. However in a mono-repo there can be several projects in different folders.
+|
+----
+build/
+src/
+    project1/
+    project2/
+    project3/
+----
+|===
+
+In this case it might be tempting to make it so that all the projects get built on the PR, however this is impractical for the following reasons:
+
+  * If the PR only consists of work done on `project1` then building the other two projects will be a waste of time for validating the build
+  * Azure DevOps can be configured to only run builds in folders that have changed, however this will mean that only `project1` is built, but the PR is waiting for all builds to complete before the PR can be approved.
+
+A less than ideal way of getting around this is to make all the builds on the PR validation optional, but this will lead to bad practices where code that causes a build failure can still be merged into the trunk branch.
+
+To support this scenario, and to be able to run monorepo builds in any CI/CD that uses Git `mrbuild` looks at the changes across the repo using the command `git --no-pager diff --name-only <BRANCH>` (where BRANCH is the branch to compare against). It will then perform the build in the modified directories. This allows the CI/CD system to only call one build, which is the one that runs `mrbuild`. This build can then be set as required on the PR in GitHub.

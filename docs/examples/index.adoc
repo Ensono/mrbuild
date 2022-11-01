@@ -1,0 +1,7 @@
+== Examples
+
+include::datafile.adoc[]
+
+include::piping.adoc[]
+
+include::env-config.adoc[]

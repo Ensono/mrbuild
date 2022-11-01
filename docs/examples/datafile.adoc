@@ -1,0 +1,15 @@
+=== Running using a data file
+
+Using a data file, instead of letting `mrbuild` run a Git command can be favourable in certain situations, for example running a dry run on a different machine to the source code.
+
+NOTE: This example assumes that the data file is called `gitoutput.txt` and is in the current directory.
+
+[source]
+----
+./mrbuild affected -c ./mrbuild.yaml --datafile ./gitputput.txt --dryrun
+----
+
+.Executing command with a data file
+image::images/dry-run-with-datafile.png[]
+
+As can be seen from the screenshot the application provides information about the command that would be run, which project and from which directory it would be run from.

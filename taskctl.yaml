@@ -1,0 +1,49 @@
+import:
+- ./build/taskctl/contexts.yaml
+- ./build/taskctl/tasks.yaml
+
+pipelines:
+
+  build:
+    - task: clean
+    - task: buildnumber
+    - task: _docs
+      depends_on: 
+        - clean
+        - buildnumber
+    - task: test:unit
+      depends_on: clean
+    - task: _compile
+      depends_on:
+        - clean
+        - buildnumber
+
+  docs:
+    - task: buildnumber
+    - task: _docs
+      depends_on: buildnumber
+
+  inttest:
+    - task: buildnumber
+    - task: test:int
+      depends_on: buildnumber
+    - task: test:int:generate_report
+      depends_on: test:int
+
+  compile:
+    - task: buildnumber
+    - task: _compile
+      depends_on: buildnumber
+
+  release:
+    - task: buildnumber
+    - task: _release
+      depends_on:
+        - buildnumber
+      env:
+        VERSION_NUMBER: $BUILDNUMBER
+        API_KEY: $API_KEY
+        NOTES:
+        COMMIT_ID: $COMMIT_ID
+        ARTIFACTS_DIR: $ARTIFACTS_DIR  
+        REPONAME: $REPONAME

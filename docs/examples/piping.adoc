@@ -1,0 +1,23 @@
+=== Execution using a pipe
+
+A very common command pattern in Linux is to pipe several commands together, e.g. `<cmd1> | <cmd2>`. In this case the results of `cmd1` will be passed to the input of `cmd2`.
+
+`mrbuild` supports this pattern for setting the data that will be analysed to determine what projects need to be built. This is useful if the built in command is not adequate or the data is coming from a different source.
+
+[source,bash]
+----
+git --no-pager diff --name-only main > gitoutput.txt
+cat gitoutput.txt | ./mrbuild affected -c ./mrbuid.yaml --dryrun
+----
+
+This can be further simplified so that there is no intermediatry file.
+
+[source,basg]
+----
+git --no-pager diff --name-only main | ./mrbuild affected -c ./mrbuid.yaml --dryrun
+----
+
+NOTE: Although Linux has been specifically mentioned here, these commands also work on Windows using PowerShell.
+
+.Piping data to the command
+image::images/piped-data.png[]

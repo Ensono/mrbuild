@@ -1,0 +1,17 @@
+=== Using environment variables
+
+Most of the command line options can be specified in environment variables. This is particularly useful in CI/CD situations where the behaviour of the command needs to be changed, but not necessarily checked into the repository.
+
+.Configuring using environment variables
+[source,powershell]
+----
+$env:MRBUILD_CONFIG = "./mrbuild.yaml"
+$env:MRBUILD_DATAFILE = "./gitoutput.txt"
+$env:MRBUILD_OPTIONS_DRYRUN = 1
+
+# Execute just the affected command
+mrbuild affected
+----
+
+.Controlling the app using environment variables
+image::images/dry-run-using-envvars.png[]

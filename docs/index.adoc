@@ -1,0 +1,20 @@
+:source-highlighter: rouge
+:icons: font
+:toc:
+:listing-caption: Listing
+
+= Mono Repo Build
+
+include::overview.adoc[]
+
+<<<
+
+include::usage.adoc[]
+
+include::examples/index.adoc[]
+
+<<<
+
+include::reasons.adoc[]
+
+

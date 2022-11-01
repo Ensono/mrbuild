@@ -1,0 +1,13 @@
+{
+    "title": "MRBuild Manual",
+    "output": "{{ basepath }}/outputs/docs/{{ format }}",
+    "trunkBranch": "main",
+    "path": "{{ basepath }}/docs/index.adoc",
+    "pdf": {
+        "attributes": [
+            "pdf-theme={{ basepath }}/docs/conf/pdf/theme.yml",
+            "pdf-fontsdir=\"{{ basepath }}/docs/conf/fonts;GEM_FONTS_DIR\"",
+            "allow-uri-read"
+        ]
+    }
+}

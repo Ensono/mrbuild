@@ -1,0 +1,53 @@
+name: air.mrbuild
+
+on:
+  push:
+    paths:
+      - 'build/github/**'
+      - 'src/**'
+  pull_request:
+    branches:
+      - main
+
+env:
+  BUILDNUMBER: "0.0.${{ github.RUN_NUMBER }}"
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./build/github/templates/install-taskctl
+
+      # Create the binaries and the integration tests
+      - run: taskctl build
+
+      # Execute the integration tests
+      - run: taskctl inttest
+
+      # Publish test results
+      - name: Test Reports
+        uses: xportation/junit-coverage-report@main
+        with:
+          junit-path: outputs/bin/report.xml
+          coverage-path: outputs/bin/coverage.xml
+
+
+      # Upload the binaries, but not the integration tests
+      - name: Upload Binaries
+        uses: actions/upload-artifact@v3
+        with:
+          name: binaries
+          path: |
+            outputs/bin
+            !outputs/bin/*inttest*
+
+      # Upload documentation
+      - name: Upload Docs
+        uses: actions/upload-artifact@v3
+        with:
+          name: docs
+          patth: outputs/docs/*.pdf
+
+  
