@@ -11,6 +11,7 @@ on:
 
 env:
   BUILDNUMBER: "0.0.${{ github.RUN_NUMBER }}"
+  TaskctlVersion: 1.4.2  
 
 jobs:
 
