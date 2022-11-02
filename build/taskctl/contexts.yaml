@@ -11,9 +11,7 @@ contexts:
         - -v
         - ${PWD}:/app
         - -v
-        - /var/run/docker.sock:/var/run/docker.sock
-        - -v
-        - C:/Users/rseymour/workspaces/stacks/independent-runner/src/modules:/modules        
+        - /var/run/docker.sock:/var/run/docker.sock  
         - -e
         - PSModulePath=/modules
         - -w
@@ -49,9 +47,7 @@ contexts:
         - run
         - --rm
         - -v
-        - ${PWD}:/app
-        - -v
-        - C:/Users/rseymour/workspaces/stacks/independent-runner/src/modules:/modules        
+        - ${PWD}:/app    
         - -e
         - PSModulePath=/modules
         - -w

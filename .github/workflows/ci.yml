@@ -49,10 +49,10 @@ jobs:
             !outputs/bin/*inttest*
 
       # Upload documentation
-      - name: Upload Docs
-        uses: actions/upload-artifact@v3
-        with:
-          name: docs
-          patth: outputs/docs/*.pdf
+      # - name: Upload Docs
+      #  uses: actions/upload-artifact@v3
+      #  with:
+      #    name: docs
+      #    patth: outputs/docs/*.pdf
 
   
