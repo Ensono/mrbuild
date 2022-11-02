@@ -18,7 +18,7 @@ contexts:
         - PSModulePath=/modules
         - -w
         - /app
-        - russellseymour/runner-pwsh-golang:latest
+        - amidostacks/runner-pwsh-golang:0.3.144-unstable
         - pwsh
         - -NoProfile
         - -Command
