@@ -22,7 +22,7 @@ tasks:
     description: Build Docs for Stacks CLI
     context: docsenv
     command:
-      - Invoke-AsciiDoc -PDF -basepath /app -config /app/manual.json
+      - Invoke-Asciidoc -PDF -basepath /app -config /app/manual.json
 
   test:unit:
     context: pwshgo
