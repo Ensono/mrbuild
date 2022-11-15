@@ -16,7 +16,7 @@ contexts:
         - PSModulePath=/modules
         - -w
         - /app
-        - amidostacks/runner-pwsh-golang:0.3.149-unstable
+        - amidostacks/runner-pwsh-golang:0.3.150-unstable
         - pwsh
         - -NoProfile
         - -Command
@@ -35,7 +35,7 @@ contexts:
         - PSModulePath=/modules        
         - -w
         - /app
-        - amidostacks/runner-pwsh-dotnet:0.3.149-unstable
+        - amidostacks/runner-pwsh-dotnet:0.3.150-unstable
         - pwsh
         - -NoProfile
         - -Command        
@@ -53,7 +53,7 @@ contexts:
         - -w
         - /app
         # - amidostacks/runner-pwsh-asciidoctor:0.3.143-unstable
-        - amidostacks/runner-pwsh-asciidoctor:0.3.149-unstable
+        - amidostacks/runner-pwsh-asciidoctor:0.3.150-unstable
         - pwsh
         - -NoProfile
         - -Command        
