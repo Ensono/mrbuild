@@ -3,7 +3,7 @@ tasks:
   buildnumber:
     context: pwshgo
     command:
-      - Update-BuildNumber
+      - Update-BuildNumber -buildnumber $env:BUILDNUMBER
     exportAs: BUILDNUMBER
 
   clean:
