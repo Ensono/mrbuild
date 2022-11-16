@@ -78,8 +78,11 @@ func TestFileStat(t *testing.T) {
 		// tests will split up the values so that that they can be compared with
 		// each other as slices
 		re := regexp.MustCompile(`(?m)\\|/`)
-		tableDirectoryParts := re.Split(filepath.Dir(table.path), -1)
 		fsDirectoryParts := re.Split(fs.Directory, -1)
+
+		// correctly convert the input value based on the OS so that the deep match works
+		dirParts := re.Split(table.path, -1)
+		tableDirectoryParts := dirParts[:len(dirParts)-1]
 
 		if !reflect.DeepEqual(tableDirectoryParts, fsDirectoryParts) {
 			t.Errorf("Directory expected '%s', actual '%s'",
