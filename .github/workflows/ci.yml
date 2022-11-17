@@ -56,10 +56,6 @@ jobs:
       - uses: ./build/github/templates/install-taskctl
       - uses: ./build/github/templates/install-envfile
 
-      # Get the commitId for the release
-      - name: Get Commit ID
-        uses: fufuhu/get-commit-id
-
       # Download the artifacts that have been uploaded
       - name: Download artifacts
         uses: actions/download-artifact@v3
@@ -73,7 +69,7 @@ jobs:
         env:
           VERSION_NUMBER: $BUILDNUMBER
           API_KEY: $GITHUB_TOKEN
-          COMMIT_ID: ${{ steps.get_commit_id.outputs.commit_id }}
+          COMMIT_ID: ${{ github.sha }}
           ARTIFACTS_DIR: download
           REPONAME: amido/mrbuild
 
