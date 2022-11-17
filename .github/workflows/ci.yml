@@ -38,21 +38,44 @@ jobs:
           junit-path: outputs/bin/report.xml
           coverage-path: outputs/bin/coverage.xml
 
-
       # Upload the binaries, but not the integration tests
-      - name: Upload Binaries
+      - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: binaries
+          name: artifacts
           path: |
             outputs/bin
             !outputs/bin/*inttest*
+            outputs/docs/pdf
 
-      # Upload documentation
-      # - name: Upload Docs
-      #  uses: actions/upload-artifact@v3
-      #  with:
-      #    name: docs
-      #    patth: outputs/docs/*.pdf
+  release:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./build/github/templates/install-taskctl
+      - uses: ./build/github/templates/install-envfile
+
+      # Get the commitId for the release
+      - name: Get Commit ID
+        uses: fufuhu/get-commit-id
+
+      # Download the artifacts that have been uploaded
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: artifacts
+          path: download
+
+      # Call AIR to upload the artefacts as a release
+      - name: Create GH Release
+        run: taskctl release
+        env:
+          VERSION_NUMBER: $BUILDNUMBER
+          API_KEY: $GITHUB_TOKEN
+          COMMIT_ID: ${{ steps.get_commit_id.outputs.commit_id }}
+          ARTIFACTS_DIR: download
+          REPONAME: amido/mrbuild
+
 
   

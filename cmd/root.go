@@ -65,7 +65,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	// Add flags required for the command
-	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "./mrbuild.yaml", "Path to the configuration file for the repository")
+
 	rootCmd.PersistentFlags().StringVarP(&logLevel, "loglevel", "l", "info", "Logging Level")
 	rootCmd.PersistentFlags().StringVarP(&logFormat, "logformat", "f", "text", "Logging format, text or json")
 	rootCmd.PersistentFlags().BoolVarP(&logColour, "logcolour", "", true, "State if colours should be used in the text output")
@@ -78,7 +78,7 @@ func init() {
 	viper.BindPFlags(rootCmd.Flags())
 
 	// Configure the logging options
-	viper.BindPFlag("config", rootCmd.PersistentFlags().Lookup("config"))
+
 	viper.BindPFlag("log.format", rootCmd.PersistentFlags().Lookup("logformat"))
 	viper.BindPFlag("log.colour", rootCmd.PersistentFlags().Lookup("logcolour"))
 	viper.BindPFlag("log.level", rootCmd.PersistentFlags().Lookup("loglevel"))
@@ -103,21 +103,24 @@ func initConfig() {
 	// read in environment variables that match
 	viper.AutomaticEnv()
 
-	// set the cfgfile from Viper
-	cfgFile = viper.GetString("config")
+	cmd, _, _ := rootCmd.Find(os.Args[1:])
+	if cmd.Use == affectedCmd.Use {
+		// set the cfgfile from Viper
+		cfgFile = viper.GetString("config")
 
-	if cfgFile != "" {
+		if cfgFile != "" {
 
-		// Set the config file parameters
-		viper.SetConfigFile(cfgFile)
-	}
+			// Set the config file parameters
+			viper.SetConfigFile(cfgFile)
+		}
 
-	// Read in the configruation file
-	err := viper.ReadInConfig()
-	if err != nil && viper.ConfigFileUsed() != "" {
-		fmt.Printf("Unable to read in configuration file: %s\n", err.Error())
-		os.Exit(1)
-		return
+		// Read in the configruation file
+		err := viper.ReadInConfig()
+		if err != nil && viper.ConfigFileUsed() != "" {
+			fmt.Printf("Unable to read in configuration file: %s\n", err.Error())
+			os.Exit(1)
+			return
+		}
 	}
 }
 

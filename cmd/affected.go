@@ -35,10 +35,12 @@ func init() {
 	// add the command
 	rootCmd.AddCommand(affectedCmd)
 
+	affectedCmd.Flags().StringVarP(&cfgFile, "config", "c", "./mrbuild.yaml", "Path to the configuration file for the repository")
 	affectedCmd.Flags().StringVar(&ignore, "ignore", "", "List of projects that should not be processed (command delimited).")
 	affectedCmd.Flags().StringVar(&datafile, "datafile", "", "Path to file containing git file data to work with")
 	affectedCmd.Flags().IntVar(&workers, "workers", 1, "Number of workers to spawn jobs to")
 
+	viper.BindPFlag("config", affectedCmd.Flags().Lookup("config"))
 	viper.BindPFlag("options.ignore", affectedCmd.Flags().Lookup("ignore"))
 	viper.BindPFlag("datafile", affectedCmd.Flags().Lookup("datafile"))
 	viper.BindPFlag("workers", affectedCmd.Flags().Lookup("workers"))
