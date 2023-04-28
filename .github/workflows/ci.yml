@@ -42,7 +42,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: artifacts
+          name: assets
           path: |
             outputs/bin
             !outputs/bin/*inttest*
@@ -60,7 +60,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: artifacts
+          name: assets
           path: download
 
       # Call AIR to upload the artefacts as a release
