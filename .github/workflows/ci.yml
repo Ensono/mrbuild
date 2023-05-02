@@ -15,6 +15,7 @@ env:
   BUILDNUMBER: "0.0.${{ github.RUN_NUMBER }}"
   TaskctlVersion: 1.4.2  
   EnvfileVersion: 0.0.16
+  ACTIONS_STEP_DEBUG: true
 
 jobs:
 
@@ -60,7 +61,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: assets
+          name: artifacts
           path: download
 
       # Call AIR to upload the artefacts as a release
