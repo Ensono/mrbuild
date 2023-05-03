@@ -72,7 +72,7 @@ jobs:
           API_KEY: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_ID: ${{ github.sha }}
           ARTIFACTS_DIR: download
-          REPOSITORY: amido/mrbuild
+          REPOSITORY: mrbuild
           OWNER: amido
           PUBLISH_RELEASE: true
 
