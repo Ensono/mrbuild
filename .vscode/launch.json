@@ -38,8 +38,40 @@
                 "MRBUILD_OPTIONS_DRYRUN": "true",
                 "MRBUILD_LOG_LOGLEVEL": "debug"
             }
+        },
+        {
+            "name": "mrbuild run",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/mrbuild.go",
+            "debugAdapter": "dlv-dap",
+            "args": [
+                "run",
+                "-c",
+                "${workspaceFolder}/local/mrbuild.yaml",
+                "-n",
+                "ancillary",
+                "-d",
+                "c:\\Users\\rseymour\\workspaces\\stacks\\stacks-ancillary-resources",
+                "--cmdlog"
+            ]
+        },
+        {
+            "name": "mrbuild show",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/mrbuild.go",
+            "debugAdapter": "dlv-dap",
+            "args": [
+                "show",
+                "-c",
+                "${workspaceFolder}/local/mrbuild.yaml",
+            ]
         }
-
 
     ]
 }

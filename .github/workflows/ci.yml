@@ -73,6 +73,6 @@ jobs:
           COMMIT_ID: ${{ github.sha }}
           ARTIFACTS_DIR: download
           REPONAME: amido/mrbuild
-          PUBLISH_RELEASE: 1
+          PUBLISH_RELEASE: true
 
 
