@@ -13,6 +13,7 @@ on:
 
 env:
   BUILDNUMBER: "0.0.${{ github.RUN_NUMBER }}"
+  VERSION_NUMBER: "0.0.${{ github.RUN_NUMBER }}"
   TaskctlVersion: 1.4.2  
   EnvfileVersion: 0.0.16
 
@@ -68,7 +69,6 @@ jobs:
       - name: Create GH Release
         run: taskctl release
         env:
-          VERSION_NUMBER: $BUILDNUMBER
           API_KEY: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_ID: ${{ github.sha }}
           ARTIFACTS_DIR: download
