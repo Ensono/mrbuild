@@ -1,3 +1,12 @@
+---
+id: mrbuild-example-datafile
+title: Using a Datafile
+description: MrBuild can accept data from a file to determine which build to execute
+weight: 10
+tags:
+  - examples
+---
+
 === Running using a data file
 
 Using a data file, instead of letting `mrbuild` run a Git command can be favourable in certain situations, for example running a dry run on a different machine to the source code.

@@ -1,0 +1,9 @@
+---
+id: mrbuild-examples
+title: Examples
+description: Examples detailing how the mrbuild command can be used in a mono repo.
+tags:
+  - build
+categories:
+  - Pipelines
+---

@@ -1,3 +1,14 @@
+---
+id: mrbuild-reasons
+title: Reasons for MrBuild
+description: Details as to why MrBuild was designed and developed.
+weight: 10
+tags:
+  - build
+categories:
+  - Pipelines
+---
+
 == Reasons
 
 One of the issues with using Azure DevOps Pipelines and GitHub repos is that it is hard to get validation in a Pull Request when working in a mono repo.

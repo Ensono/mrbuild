@@ -1,3 +1,15 @@
+---
+id: mrbuild-usage
+title: Using MrBuild
+description: There are a number of different configuration options for MrBuild that modify how it is run and how it can be used. This page details these configuration options.
+weight: 20
+tags:
+  - configuration
+  - settings
+categories:
+  - Pipelines
+---
+
 :envvar-prefix: MRBUILD_
 
 == Usage

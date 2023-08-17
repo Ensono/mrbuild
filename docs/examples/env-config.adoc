@@ -1,3 +1,12 @@
+---
+id: mrbuild-example-envvars
+title: Environment Variables
+description: The majority of configuration options that can be passed to the command can be set as environment variables. This makes it very easy to configure in a CI/CD system.
+weight: 30
+tags:
+  - examples
+---
+
 === Using environment variables
 
 Most of the command line options can be specified in environment variables. This is particularly useful in CI/CD situations where the behaviour of the command needs to be changed, but not necessarily checked into the repository.

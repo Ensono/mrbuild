@@ -1,3 +1,12 @@
+---
+id: mrbuild-example-piping
+title: Piping data to the command
+description: Data can be piped to the command on the command line
+weight: 30
+tags:
+  - examples
+---
+
 === Execution using a pipe
 
 A very common command pattern in Linux is to pipe several commands together, e.g. `<cmd1> | <cmd2>`. In this case the results of `cmd1` will be passed to the input of `cmd2`.
