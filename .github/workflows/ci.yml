@@ -14,8 +14,7 @@ on:
 env:
   BUILDNUMBER: "0.0.${{ github.RUN_NUMBER }}"
   VERSION_NUMBER: "0.0.${{ github.RUN_NUMBER }}"
-  TaskctlVersion: 1.4.2  
-  EnvfileVersion: 0.0.16
+  TaskctlVersion: 1.5.4  
 
 jobs:
 
@@ -24,7 +23,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./build/github/templates/install-taskctl
-      - uses: ./build/github/templates/install-envfile
 
       # Create the binaries and the integration tests
       - run: taskctl build
@@ -73,7 +71,7 @@ jobs:
           COMMIT_ID: ${{ github.sha }}
           ARTIFACTS_DIR: download
           REPOSITORY: mrbuild
-          OWNER: amido
+          OWNER: ensono
           PUBLISH_RELEASE: true
 
 

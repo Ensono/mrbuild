@@ -1,9 +1,0 @@
-name: 'Install envfile'
-description: 'Downloads and installs envfile'
-runs:
-  using: 'composite'
-  steps:
-    - run: |
-        wget https://github.com/amido/stacks-envfile/releases/download/v${{ env.EnvfileVersion }}/stacks-envfile-linux-amd64-${{ env.EnvfileVersion }} -O /usr/local/bin/envfile
-        chmod +x /usr/local/bin/envfile
-      shell: bash
