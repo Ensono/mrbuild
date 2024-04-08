@@ -52,13 +52,13 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./build/github/templates/install-taskctl
       - uses: ./build/github/templates/install-envfile
 
       # Download the artifacts that have been uploaded
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: assets
           path: download
