@@ -20,11 +20,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    permissions:
-      actions: write
-      contents: write
-      pull-requests: write
-      repository-projects: write
     steps:
       - uses: actions/checkout@v4
       - uses: ./build/github/templates/install-taskctl
@@ -39,6 +34,7 @@ jobs:
       - name: Test Reports
         uses: xportation/junit-coverage-report@main
         with:
+          github-token: ${{ secrets.ENSONOSTACKS_GH_TOKEN }}
           junit-path: outputs/bin/report.xml
           coverage-path: outputs/bin/coverage.xml
 
@@ -72,7 +68,7 @@ jobs:
       - name: Create GH Release
         run: taskctl release
         env:
-          API_KEY: ${{ secrets.GITHUB_TOKEN }}
+          API_KEY: ${{ secrets.ENSONOSTACKS_GH_TOKEN }}
           COMMIT_ID: ${{ github.sha }}
           ARTIFACTS_DIR: download
           REPOSITORY: mrbuild
