@@ -45,7 +45,7 @@ tasks:
   _release:
     context: pwshgo
     command:
-      - Publish-GitHubRelease `
+      - $InformationPreference="Continue" && Publish-GitHubRelease `
         -version $env:BUILDNUMBER `
         -commitId $env:COMMIT_ID `
         -apiKey $env:API_KEY `
