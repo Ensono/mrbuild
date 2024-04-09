@@ -1,4 +1,3 @@
-
 contexts:
   pwshgo:
     executable:
@@ -11,17 +10,22 @@ contexts:
         - -v
         - ${PWD}:/app
         - -v
-        - /var/run/docker.sock:/var/run/docker.sock  
+        - /var/run/docker.sock:/var/run/docker.sock
         - -e
         - PSModulePath=/modules
         - -w
         - /app
-        - amidostacks/runner-pwsh-golang:0.3.150-unstable
+        - amidostacks/runner-pwsh-golang:0.4.113-stable
         - pwsh
         - -NoProfile
         - -Command
     quote: "'"
-    before: envfile -e home,path,gopath
+    envfile:
+      generate: true
+      exclude:
+        - home
+        - path
+        - gopath
 
   inttestenv:
     executable:
@@ -32,13 +36,13 @@ contexts:
         - -v
         - ${PWD}:/app
         - -e
-        - PSModulePath=/modules        
+        - PSModulePath=/modules
         - -w
         - /app
-        - amidostacks/runner-pwsh-golang:0.3.150-unstable
+        - amidostacks/runner-pwsh-golang:0.4.113-stable
         - pwsh
         - -NoProfile
-        - -Command        
+        - -Command
 
   docsenv:
     executable:
@@ -47,13 +51,12 @@ contexts:
         - run
         - --rm
         - -v
-        - ${PWD}:/app    
+        - ${PWD}:/app
         - -e
         - PSModulePath=/modules
         - -w
         - /app
-        # - amidostacks/runner-pwsh-asciidoctor:0.3.143-unstable
-        - amidostacks/runner-pwsh-asciidoctor:0.3.150-unstable
+        - amidostacks/runner-pwsh-asciidoctor:0.4.113-stable
         - pwsh
         - -NoProfile
-        - -Command        
+        - -Command

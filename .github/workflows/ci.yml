@@ -14,17 +14,15 @@ on:
 env:
   BUILDNUMBER: "0.0.${{ github.RUN_NUMBER }}"
   VERSION_NUMBER: "0.0.${{ github.RUN_NUMBER }}"
-  TaskctlVersion: 1.4.2  
-  EnvfileVersion: 0.0.16
+  TaskctlVersion: 1.5.1
 
 jobs:
 
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./build/github/templates/install-taskctl
-      - uses: ./build/github/templates/install-envfile
 
       # Create the binaries and the integration tests
       - run: taskctl build
@@ -36,12 +34,13 @@ jobs:
       - name: Test Reports
         uses: xportation/junit-coverage-report@main
         with:
+          github-token: ${{ secrets.ENSONOSTACKS_GH_TOKEN }}
           junit-path: outputs/bin/report.xml
           coverage-path: outputs/bin/coverage.xml
 
       # Upload the binaries, but not the integration tests
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: assets
           path: |
@@ -54,13 +53,13 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./build/github/templates/install-taskctl
       - uses: ./build/github/templates/install-envfile
 
       # Download the artifacts that have been uploaded
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: assets
           path: download
@@ -69,11 +68,11 @@ jobs:
       - name: Create GH Release
         run: taskctl release
         env:
-          API_KEY: ${{ secrets.GITHUB_TOKEN }}
+          API_KEY: ${{ secrets.ENSONOSTACKS_GH_TOKEN }}
           COMMIT_ID: ${{ github.sha }}
           ARTIFACTS_DIR: download
           REPOSITORY: mrbuild
-          OWNER: amido
+          OWNER: ensono
           PUBLISH_RELEASE: true
 
 
