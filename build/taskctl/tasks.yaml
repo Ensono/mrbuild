@@ -44,13 +44,15 @@ tasks:
   _release:
     context: pwshgo
     command:
-      - '$InformationPreference = "Continue"; Publish-GitHubRelease -version $env:BUILDNUMBER -commitId $env:COMMIT_ID -apikey $env:API_KEY -artifactsDir $env:ARTIFACTS_DIR -Owner $env:OWNER -repository $env:REPOSITORY -publishRelease $true'
-    # env:
-    #   VERSION_NUMBER: $BUILDNUMBER
-    #   API_KEY: $API_KEY
-    #   COMMIT_ID: $COMMIT_ID
-    #   ARTIFACTS_DIR: $ARTIFACTS_DIR
-    #   REPONAME: $REPONAME
+      - |
+        $InformationPreference = "Continue"
+        Publish-GitHubRelease -version $env:BUILDNUMBER `
+          -commitId $env:COMMIT_ID `
+          -apikey $env:API_KEY `
+          -artifactsDir $env:ARTIFACTS_DIR ``
+          -Owner $env:OWNER `
+          -repository $env:REPOSITORY `
+          -publishRelease $true
 
   debug:buildnumber:
     # context: pwshgo
