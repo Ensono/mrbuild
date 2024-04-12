@@ -47,13 +47,15 @@ tasks:
       - |
         dir env:
         $InformationPreference = "Continue"
-        Publish-GitHubRelease -version $env:BUILDNUMBER `
+        $cmd = "Publish-GitHubRelease -version $env:BUILDNUMBER `
           -commitId $env:COMMIT_ID `
           -apikey $env:API_KEY `
           -artifactsDir $env:ARTIFACTS_DIR `
           -Owner $env:OWNER `
           -repository $env:REPOSITORY `
-          -publishRelease $true 6>&1
+          -publishRelease $true"
+        Write-Host $cmd
+        iex $cmd
 
   debug:buildnumber:
     # context: pwshgo
