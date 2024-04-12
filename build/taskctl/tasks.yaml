@@ -45,6 +45,7 @@ tasks:
     context: pwshgo
     command:
       - |
+        dir env:
         $InformationPreference = "Continue"
         Publish-GitHubRelease -version $env:BUILDNUMBER `
           -commitId $env:COMMIT_ID `
