@@ -49,7 +49,7 @@ tasks:
         Publish-GitHubRelease -version $env:BUILDNUMBER `
           -commitId $env:COMMIT_ID `
           -apikey $env:API_KEY `
-          -artifactsDir $env:ARTIFACTS_DIR ``
+          -artifactsDir $env:ARTIFACTS_DIR `
           -Owner $env:OWNER `
           -repository $env:REPOSITORY `
           -publishRelease $true
