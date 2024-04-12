@@ -69,13 +69,12 @@ jobs:
 
       # Call AIR to upload the artefacts as a release
       - name: Create GH Release
+        id: gh_release
         run: taskctl release
         env:
           API_KEY: ${{ secrets.ENSONOSTACKS_GH_TOKEN }}
           COMMIT_ID: ${{ github.sha }}
           ARTIFACTS_DIR: download
           REPOSITORY: mrbuild
-          OWNER: ensono
+          OWNER: Ensono
           PUBLISH_RELEASE: true
-
-
