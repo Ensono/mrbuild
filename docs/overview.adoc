@@ -9,4 +9,4 @@ There are other applications, such as https://nx.dev/, which can detect changes 
 As `mrbuild` is a Go based application it is a single binary that can be run on Windows, Linux and Mac OS. It is designed to be downloaded by a CI/CD system and then run as the entry point to the builds in the mono repo. If any changes are found in project folders it will spawn the build as describes in a configuration file.
 
 .Application process flow
-image::images/app-process.svg[]
+image::images/app-process.png[]
