@@ -52,7 +52,7 @@ tasks:
           -artifactsDir $env:ARTIFACTS_DIR `
           -Owner $env:OWNER `
           -repository $env:REPOSITORY `
-          -publishRelease $true
+          -publishRelease $true 6>&1
 
   debug:buildnumber:
     # context: pwshgo
