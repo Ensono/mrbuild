@@ -45,7 +45,6 @@ tasks:
     context: pwshgo
     command:
       - |
-        dir env:
         $InformationPreference = "Continue"
         $cmd = "Publish-GitHubRelease -version $env:BUILDNUMBER `
           -commitId $env:COMMIT_ID `
@@ -55,7 +54,7 @@ tasks:
           -repository $env:REPOSITORY `
           -publishRelease $true"
         Write-Host $cmd
-        iex $cmd
+        Invoke-Expression $cmd
 
   debug:buildnumber:
     # context: pwshgo
