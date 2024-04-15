@@ -15,7 +15,7 @@ contexts:
         - PSModulePath=/modules
         - -w
         - /app
-        - amidostacks/runner-pwsh-golang:0.4.113-stable
+        - ensonostackseuweirdfmu.azurecr.io/ensono/eir-golang
         - pwsh
         - -NoProfile
         - -Command
@@ -39,7 +39,7 @@ contexts:
         - PSModulePath=/modules
         - -w
         - /app
-        - amidostacks/runner-pwsh-golang:0.4.113-stable
+        - ensonostackseuweirdfmu.azurecr.io/ensono/eir-golang
         - pwsh
         - -NoProfile
         - -Command
@@ -56,7 +56,7 @@ contexts:
         - PSModulePath=/modules
         - -w
         - /app
-        - amidostacks/runner-pwsh-asciidoctor:0.4.113-stable
+        - ensonostackseuweirdfmu.azurecr.io/ensono/eir-asciidoctor
         - pwsh
         - -NoProfile
         - -Command

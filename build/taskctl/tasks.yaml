@@ -1,5 +1,4 @@
 tasks:
-
   buildnumber:
     context: pwshgo
     command:
@@ -33,7 +32,7 @@ tasks:
   test:int:
     context: inttestenv
     description: Run Integration Tests
-    
+
     command:
       - /app/build/scripts/Invoke-IntegrationTests.ps1 -build_number $BUILDNUMBER -RunTests
 
@@ -45,14 +44,17 @@ tasks:
   _release:
     context: pwshgo
     command:
-      - $InformationPreference="Continue" && Publish-GitHubRelease `
-        -version $env:BUILDNUMBER `
-        -commitId $env:COMMIT_ID `
-        -apiKey $env:API_KEY `
-        -artifactsDir $env:ARTIFACTS_DIR `
-        -owner $env:OWNER `
-        -repository $env:REPOSITORY
-
+      - |
+        $InformationPreference = "Continue"
+        $cmd = "Publish-GitHubRelease -version $env:BUILDNUMBER `
+          -commitId $env:COMMIT_ID `
+          -apikey $env:API_KEY `
+          -artifactsDir $env:ARTIFACTS_DIR `
+          -Owner $env:OWNER `
+          -repository $env:REPOSITORY `
+          -publishRelease $true"
+        Write-Host $cmd
+        Invoke-Expression $cmd
 
   debug:buildnumber:
     # context: pwshgo

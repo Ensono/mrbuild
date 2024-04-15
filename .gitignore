@@ -1,5 +1,5 @@
 local/
 outputs/
-envfile
+envfile*
 cmdlog.txt
 inttest
