@@ -94,6 +94,7 @@ projects:
     build:
       cmd: taskctl infrastructure
       folder: .
+    order: 1
 
   - name: tfstate
     folder: src/terraform_state
@@ -104,6 +105,7 @@ projects:
     build:
       cmd: taskctl infrastructure   
       folder: .
+    order: 0
 ----
 
 Multiple projects can be specified in the configuration file, each project has certain attributes as defined in the following table.
@@ -126,6 +128,11 @@ In the example the `\` has to be escaped.
 If this is null or not set then the project folder value will be used.
 
 If this is set to a full stop, `.`, then the directory of the configuration file will be used
+| `order` | Integer value that determines the execution order of affected projects.
+
+Projects are sorted in ascending order (lower values run first). This is useful when projects have dependencies, such as infrastructure needing to be deployed before applications.
+
+If not specified, the default value is 0.
 |===
 
 The following image shows how a list of files are matched with the resulting regular expression. As a match has been found the "ancillary_resources" project will be added to the list of builds to spawn.
