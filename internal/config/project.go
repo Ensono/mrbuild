@@ -6,4 +6,5 @@ type Project struct {
 	Patterns []string          `mapstructure:"patterns"`
 	Build    Build             `mapstructure:"build"` // Command to run if the directory contents have changed
 	Env      map[string]string `mapstructure:"env"`   // list of environment variables that should be set when the command is executed
+	Order    int               `mapstructure:"order"` // Order in which the project should be run.
 }
