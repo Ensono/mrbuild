@@ -43,8 +43,8 @@ $temp_report_file = [IO.Path]::Combine("outputs", "tests", "integration_test_rep
 $test_report_file = [IO.Path]::Combine("outputs", "tests", "integration_test_report.xml")
 
 # Build up the path to the test_binary and the cli_binary
-$test_binary = [IO.Path]::Combine("/", "app", "outputs", "bin", $("mrbuild-linux-inttest-amd64-{0}" -f $build_number))
-$cli_binary = [IO.Path]::Combine("/", "app", "outputs", "bin", $("mrbuild-linux-amd64-{0}" -f $build_number))
+$test_binary = [IO.Path]::Combine("/", "eirctl", "outputs", "bin", $("mrbuild-linux-inttest-amd64-{0}" -f $build_number))
+$cli_binary = [IO.Path]::Combine("/", "eirctl", "outputs", "bin", $("mrbuild-linux-amd64-{0}" -f $build_number))
 
 # If running on Linux ensure that the binaries have the correct permissions set
 if ($IsLinux) {
@@ -67,10 +67,10 @@ if ($runtests) {
     }
 
     $cmd = "{0} --test.v --projectdir {1} --binarycmd {2} | Tee-Object -FilePath {3}" -f
-                $test_binary,
-                $projectDir,
-                $cli_binary,
-                $temp_report_file
+    $test_binary,
+    $projectDir,
+    $cli_binary,
+    $temp_report_file
 
     Write-Output $cmd
 
