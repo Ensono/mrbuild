@@ -20,7 +20,7 @@ tasks:
     description: Build Docs for Stacks CLI
     context: docsenv
     command:
-      - Invoke-Asciidoc -PDF -basepath /app -config /eirctl/manual.json
+      - Build-Documentation -Config /eirctl/manual.json
 
   test:unit:
     context: pwshgo

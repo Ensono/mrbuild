@@ -1,13 +1,18 @@
 {
-    "title": "MRBuild Manual",
-    "output": "{{ basepath }}/outputs/docs/{{ format }}",
-    "trunkBranch": "main",
-    "path": "{{ basepath }}/docs/index.adoc",
-    "pdf": {
-        "attributes": [
-            "pdf-theme={{ basepath }}/docs/conf/pdf/theme.yml",
-            "pdf-fontsdir=\"{{ basepath }}/docs/conf/fonts;GEM_FONTS_DIR\"",
-            "allow-uri-read"
-        ]
+  "title": "MRBuild Manual",
+  "output": "{{ basepath }}/outputs/docs/{{ format }}",
+  "trunkBranch": "main",
+  "path": "{{ basepath }}/docs/index.adoc",
+  "formats": ["pdf"],
+  "pdf": {
+    "attributes": {
+      "asciidoctor": [
+        "pdf-theme={{ basepath }}/docs/conf/styles/theme.yml",
+        "pdf-fontsdir=\"{{ basepath }}/docs/conf/fonts;GEM_FONTS_DIR\"",
+        "skip-front-matter",
+        "allow-uri-read",
+        "base_doc_dir=\"/eirctl/docs/\""
+      ]
     }
+  }
 }
