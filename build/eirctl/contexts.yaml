@@ -14,7 +14,7 @@ contexts:
 
   inttestenv:
     container:
-      name: ensono/eir-integration-tests
+      name: ensono/eir-golang
       shell: pwsh
       shell_args:
         - -Command
