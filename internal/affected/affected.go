@@ -195,17 +195,17 @@ func (a *Affected) getProjects(list string) []models.SpawnBuild {
 					Order:     project.Order,
 				})
 
-				// Set the order of the spawn build based on the order setting from the project
-				sort.Slice(spawns, func(i, j int) bool {
-					return spawns[i].Order < spawns[j].Order
-				})
-
 				// as a match has been found, exit out of the inner loop and move
 				// onto the next project
 				break
 			}
 		}
 	}
+
+	// Set the order of the spawn build based on the order setting from the project
+	sort.Slice(spawns, func(i, j int) bool {
+		return spawns[i].Order < spawns[j].Order
+	})
 
 	return spawns
 }

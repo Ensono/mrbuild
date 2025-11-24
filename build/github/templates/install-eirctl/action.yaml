@@ -1,7 +1,7 @@
-name: 'Install taskctl'
-description: 'Downloads and installs taskctl'
+name: "Install taskctl"
+description: "Downloads and installs taskctl"
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - run: |
         wget https://github.com/Ensono/eirctl/releases/download/${{ env.EirctlVersion }}/eirctl-linux-amd64 -O /usr/local/bin/eirctl
