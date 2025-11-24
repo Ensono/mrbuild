@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"regexp"
+	"sort"
 
 	"github.com/amido/mrbuild/internal/config"
 	"github.com/amido/mrbuild/internal/models"
@@ -191,6 +192,7 @@ func (a *Affected) getProjects(list string) []models.SpawnBuild {
 					Command:   project.Build.Cmd,
 					Directory: folder,
 					Env:       project.Env,
+					Order:     project.Order,
 				})
 
 				// as a match has been found, exit out of the inner loop and move
@@ -199,6 +201,11 @@ func (a *Affected) getProjects(list string) []models.SpawnBuild {
 			}
 		}
 	}
+
+	// Set the order of the spawn build based on the order setting from the project
+	sort.Slice(spawns, func(i, j int) bool {
+		return spawns[i].Order < spawns[j].Order
+	})
 
 	return spawns
 }

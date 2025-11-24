@@ -9,6 +9,7 @@ type SpawnBuild struct {
 	Directory string // Directory in which the the command should be run
 	Command   string // Command to run
 	Env       map[string]string
+	Order     int
 }
 
 // GetCommand returns a single string containing the command and the arguments that should be executed

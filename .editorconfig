@@ -1,0 +1,4 @@
+root = true
+
+[*.{yaml,yml}]
+quote_type = double_quoted

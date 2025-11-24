@@ -1,0 +1,27 @@
+contexts:
+  pwshgo:
+    container:
+      name: ensono/eir-golang
+      shell: pwsh
+      shell_args:
+        - -Command
+      enable_dind: true
+    envfile:
+      exclude:
+        - sourceversionmessage
+        - posh_azure_subscription
+        - gopath
+
+  inttestenv:
+    container:
+      name: ensono/eir-golang
+      shell: pwsh
+      shell_args:
+        - -Command
+
+  docsenv:
+    container:
+      name: ensono/eir-asciidoctor
+      shell: pwsh
+      shell_args:
+        - -Command
