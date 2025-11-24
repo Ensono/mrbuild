@@ -48,9 +48,9 @@ jobs:
         with:
           name: assets
           path: |
-            outputs/bin
+            outputs/bin/*
             !outputs/bin/*inttest*
-            outputs/docs/pdf
+            outputs/docs/pdf/*
 
   release:
     runs-on: ubuntu-latest
